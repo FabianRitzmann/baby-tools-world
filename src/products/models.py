@@ -73,12 +73,12 @@ class Comment(models.Model):
         who = self.user.username if self.user else (self.guest_name or "Guest")
         return f"{who} - {self.rating}★"
 
-# NEW Tag
+# NEW Tag Model  
 class Tag(models.Model):
     name = models.CharField(max_length=50, unique=True, null=False, blank=False)
     # ID automatically assigned by Django
-    id = models.AutoField(primary_key=True) 
-    
+    id = models.AutoField(primary_key=True)
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -88,4 +88,3 @@ class Tag(models.Model):
     class Meta:
         ordering = ["name"]
         verbose_name_plural = "Tags"
-        
