@@ -48,6 +48,22 @@ class Product(models.Model):
         return self.name
 
 
+# NEW Tag Model  
+class Tag(models.Model):
+    name = models.CharField(max_length=50, unique=True, null=False, blank=False)
+    # ID automatically assigned by Django
+    id = models.AutoField(primary_key=True)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self) -> str:
+        return self.name
+
+    class Meta:
+        ordering = ["name"]
+
+
 # NEW model
 class Comment(models.Model):
     product = models.ForeignKey(Product, related_name="comments", on_delete=models.CASCADE)
@@ -58,6 +74,7 @@ class Comment(models.Model):
     text = models.TextField(max_length=400, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    tags = models.ManyToManyField("Tag", blank=True, related_name="products")
 
     class Meta:
         ordering = ["-created_at"]
@@ -73,18 +90,5 @@ class Comment(models.Model):
         who = self.user.username if self.user else (self.guest_name or "Guest")
         return f"{who} - {self.rating}★"
 
-# NEW Tag Model  
-class Tag(models.Model):
-    name = models.CharField(max_length=50, unique=True, null=False, blank=False)
-    # ID automatically assigned by Django
-    id = models.AutoField(primary_key=True)
 
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
 
-    def __str__(self) -> str:
-        return self.name
-
-    class Meta:
-        ordering = ["name"]
-        verbose_name_plural = "Tags"
