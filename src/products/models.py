@@ -29,7 +29,7 @@ class Product(models.Model):
     image = models.ImageField(upload_to="imgs/products/", null=True, blank=True)
     name = models.CharField(max_length=80, blank=False, null=False)
     price = models.DecimalField(max_digits=6, decimal_places=2, validators=[MinValueValidator(Decimal("0.00"))])
-
+    tags = models.ManyToManyField("Tag", blank=True, related_name="products")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -74,7 +74,7 @@ class Comment(models.Model):
     text = models.TextField(max_length=400, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    tags = models.ManyToManyField("Tag", blank=True, related_name="products")
+    
 
     class Meta:
         ordering = ["-created_at"]
