@@ -1,10 +1,12 @@
 # Baby Tools World
 
-This repository contains the source code of the 'Baby Tools World' which is a simple full stack shop application written in Python using Django 6.
-The project was developed for educational purposes only and therefore has no claim to feature completeness, or only minimal claims regarding application security, user experience, or design.
+Baby Tools World is a simple online store for baby products.
+The project was developed for educational purposes and demonstrates how to build a full-stack web application using Python and Django.
 
 > [!NOTE]
 > This project assumes you already know the python programming language
+
+## Quickstart
 
 ## Prerequisites
 
@@ -14,7 +16,7 @@ In order to seamlessly interact with the repository and the software it contains
 - OCI-Compliant Container Engine (e.g. podman, docker, etc.)
 - Editor/IDE of your choice (VSC, PyCharm, etc.)
 
-## Quickstart
+### Installation
 
 In order to quickly get started with the project follow these steps:
 
