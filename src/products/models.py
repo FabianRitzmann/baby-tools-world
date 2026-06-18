@@ -73,7 +73,8 @@ class Comment(models.Model):
         who = self.user.username if self.user else (self.guest_name or "Guest")
         return f"{who} - {self.rating}★"
 
-# NEW Tag Model  
+
+# NEW Tag Model
 class Tag(models.Model):
     name = models.CharField(max_length=50, unique=True, null=False, blank=False)
     # ID automatically assigned by Django
