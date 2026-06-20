@@ -60,7 +60,7 @@ def product_detail(request, category_slug, pk):
             return redirect("product_detail", category_slug=category_slug, pk=product.pk)
     else:
         # Show empty form so all fields are cleared after successful submit
-        form = CommentForm()
+        form = CommentForm(initial={"user": request.user if request.user.is_authenticated else None})
 
     return render(
         request,
