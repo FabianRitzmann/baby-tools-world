@@ -64,6 +64,7 @@ In this section you can read about the project a bit more in detail.
 The application supports product tags to better organize products.
 
 A `Tag` model was added to the application with the following attributes:
+
 - `id` (automatically assigned by Django)
 - `name` (unique tag name)
 - `created_at` (automatically generated when the tag is created)
@@ -91,10 +92,12 @@ The Django admin interface was extended to support tag management.
 The `Tag` model was registered, making tags visible and manageable through the admin panel. The following configurations were added:
 
 `TagAdmin`
+
 - `list_display` — shows tag name, `created_at`, and `updated_at`
 - `search_fields` — enables searching by tag name
 
 `ProductAdmin`
+
 - `list_filter = ("tags",)` — allows filtering products by tag
 - `filter_horizontal = ("tags",)` — provides a user-friendly multi-select widget for tag assignment
 
@@ -107,6 +110,7 @@ As a result, administrators can create, edit, search, and manage tags directly t
 The logic for handling product ratings and comments is implemented in `products/views.py`.
 
 When a user submits a rating and comment:
+
 - The form is validated using `CommentForm`
 - The rating and comment are saved to the database
 - For `authenticated users`, existing comments are updated (upsert logic)
@@ -124,6 +128,7 @@ else:
 ### 5. Managing Products via Admin
 
 Products can be managed through the Django administration panel:
+
 - Open `http://localhost:8000/admin`
 - Log in with your superuser account
 - Create and manage categories, products, and tags
