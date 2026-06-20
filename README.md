@@ -75,10 +75,10 @@ Products can be linked to multiple tags via a Many-to-Many relationship. Tag ass
 
 ### 2. Tag Display (`products/templates/product.html`)
 
-On the product detail page, a **"Product Tags"** section is shown below the rating summary and above the "Buy now" button.
+On the product detail page, a `Product Tags` section is shown below the rating summary and above the "Buy now" button.
 
 - If tags are assigned, they are rendered as badges.
-- If no tags are assigned, the message *"no tags available"* is shown.
+- If no tags are assigned, the message `no tags available` is shown.
 
 This is implemented using Django Template Language (DTL): an `if` statement checks whether tags exist, and a `for` loop renders each tag name.
 
@@ -90,11 +90,11 @@ The Django admin interface was extended to support tag management.
 
 The `Tag` model was registered, making tags visible and manageable through the admin panel. The following configurations were added:
 
-**`TagAdmin`**
+`TagAdmin`
 - `list_display` — shows tag name, `created_at`, and `updated_at`
 - `search_fields` — enables searching by tag name
 
-**`ProductAdmin`**
+`ProductAdmin`
 - `list_filter = ("tags",)` — allows filtering products by tag
 - `filter_horizontal = ("tags",)` — provides a user-friendly multi-select widget for tag assignment
 
@@ -109,8 +109,8 @@ The logic for handling product ratings and comments is implemented in `products/
 When a user submits a rating and comment:
 - The form is validated using `CommentForm`
 - The rating and comment are saved to the database
-- For **authenticated users**, existing comments are updated (upsert logic)
-- For **guest users**, a new comment is always created
+- For `authenticated users`, existing comments are updated (upsert logic)
+- For `guest users`, a new comment is always created
 
 After a successful submission, the user is redirected back to the product detail page. A fresh `CommentForm` instance is used in the GET request to reset all form fields (rating stars and comment text):
 
