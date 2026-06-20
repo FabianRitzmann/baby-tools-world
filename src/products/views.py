@@ -59,8 +59,13 @@ def product_detail(request, category_slug, pk):
 
             return redirect("product_detail", category_slug=category_slug, pk=product.pk)
     else:
-        # Show empty form so all fields are cleared after successful submit
-        form = CommentForm()
+        # Pre-fill form for authenticated user with existing comment (if any)
+        initial = {}
+        if request.user.is_authenticated:
+            existing = product.comments.filter(user=request.user).first()
+            if existing:
+                initial = {"rating": existing.rating, "text": existing.text}
+        form = CommentForm(initial=initial)
 
     return render(
         request,
