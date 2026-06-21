@@ -1,4 +1,4 @@
-from urllib import response
+
 
 from django.contrib import messages
 from django.db.models import Avg, Count
@@ -64,12 +64,12 @@ def product_detail(request, category_slug, pk):
             return response
     else:
         initial = {"user": request.user if request.user.is_authenticated else None}
-    if request.user.is_authenticated and not request.GET.get("submitted"):
-        existing = product.comments.filter(user=request.user).first()
-        if existing:
-            initial["rating"] = existing.rating
-            initial["text"] = existing.text
-    form = CommentForm(initial=initial)
+        if request.user.is_authenticated and not request.GET.get("submitted"):
+            existing = product.comments.filter(user=request.user).first()
+            if existing:
+                initial["rating"] = existing.rating
+                initial["text"] = existing.text
+        form = CommentForm(initial=initial)
 
     return render(
         request,
