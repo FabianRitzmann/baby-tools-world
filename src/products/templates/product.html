@@ -151,7 +151,7 @@
                          name="rating"
                          id="rating-{{ star }}"
                          value="{{ star }}"
-                         {% if form.rating.value|stringformat:"s" == star %}checked{% endif %}>
+                         {% if not request.GET.submitted and form.rating.value|stringformat:"s" == star %}checked{% endif %}
                   <label for="rating-{{ star }}" title="{{ star }} star{% if star != '1' %}s{% endif %}">&#9733;</label>
                 {% endfor %}
               </div>
