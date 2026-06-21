@@ -59,13 +59,13 @@ def product_detail(request, category_slug, pk):
 
             return redirect("product_detail", category_slug=category_slug, pk=product.pk)
     else:
-        initial = {"user": request.user if request.user.is_authenticated else None}
-        if request.user.is_authenticated:
-            existing = product.comments.filter(user=request.user).first()
-            if existing:
-                initial["rating"] = existing.rating
-                initial["text"] = existing.text
-        form = CommentForm(initial=initial)
+        initial = {}
+    if request.user.is_authenticated:
+        existing = product.comments.filter(user=request.user).first()
+        if existing:
+            initial["rating"] = existing.rating
+            initial["text"] = existing.text
+    form = CommentForm()
 
     return render(
         request,
