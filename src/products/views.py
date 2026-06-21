@@ -1,3 +1,5 @@
+from urllib import response
+
 from django.contrib import messages
 from django.db.models import Avg, Count
 from django.shortcuts import get_object_or_404, redirect, render
@@ -57,15 +59,17 @@ def product_detail(request, category_slug, pk):
                 comment.save()
                 messages.success(request, "Thank you for your rating.")
 
-            return redirect("product_detail", category_slug=category_slug, pk=product.pk)
+            response = redirect("product_detail", category_slug=category_slug, pk=product.pk)
+            response["Location"] += "?submitted=1"
+            return response
     else:
-        initial = {}
-    if request.user.is_authenticated:
+         initial = {"user": request.user if request.user.is_authenticated else None}
+    if request.user.is_authenticated and not request.GET.get("submitted"):
         existing = product.comments.filter(user=request.user).first()
         if existing:
             initial["rating"] = existing.rating
             initial["text"] = existing.text
-    form = CommentForm()
+    form = CommentForm(initial=initial)
 
     return render(
         request,
