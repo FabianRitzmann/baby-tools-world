@@ -4,7 +4,7 @@ This section describes how to deploy the application on a Linux V-Server using G
  
 ### Prerequisites
  
-- A Linux V-Server (e.g. Ubuntu 24)
+- A Linux Server 
 - Nginx installed and running
 - Python 3.12+ installed
 - SSH access to the server
@@ -12,7 +12,7 @@ This section describes how to deploy the application on a Linux V-Server using G
  
 ```bash
 cd /home/<your-username>
-git clone https://github.com/FabianRitzmann/baby-tools-world.git
+git clone https://github.com/<your-username/baby-tools-world.git
 cd baby-tools-world
 git checkout add-product-tags
 ```
