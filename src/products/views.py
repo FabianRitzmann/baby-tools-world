@@ -35,7 +35,7 @@ def product_detail(request, category_slug, pk):
     comments = product.comments.select_related("user").order_by("-created_at")
 
     if request.method == "POST":
-        form = CommentForm(request.POST)
+        form = CommentForm(request.POST, initial={"user": request.user if request.user.is_authenticated else None})
         if form.is_valid():
             rating = form.cleaned_data["rating"]
             text = form.cleaned_data.get("text", "")
