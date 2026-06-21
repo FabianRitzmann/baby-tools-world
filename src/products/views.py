@@ -65,7 +65,7 @@ def product_detail(request, category_slug, pk):
             if existing:
                 initial["rating"] = existing.rating
                 initial["text"] = existing.text
-        form = CommentForm()
+        form = CommentForm(initial=initial)
 
     return render(
         request,
