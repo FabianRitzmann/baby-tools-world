@@ -147,4 +147,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 # Default primary key field type
 # https://docs.djangoproject.com/en/6.0/ref/settings/#default-auto-field
 
+CSRF_TRUSTED_ORIGINS = ['http://116.203.39.16:8000']
+
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
