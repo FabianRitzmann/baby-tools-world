@@ -34,7 +34,8 @@ SECRET_KEY = "django-insecure-mnp$i)1zfiga%tre=iv5b97+t$7zji57d$#t4rk_#1@#*^mi9b
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", "true") == "true"
-host_list = os.getenv("ALLOWED_HOSTS", "localhost, 127.0.0.1, 0.0.0.0")
+default_hosts = "localhost, 127.0.0.1, 0.0.0.0, 116.203.39.16"
+host_list = os.getenv("ALLOWED_HOSTS", default_hosts)
 
 ALLOWED_HOSTS = [x.strip() for x in host_list.split(",")]
 
@@ -147,6 +148,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 # Default primary key field type
 # https://docs.djangoproject.com/en/6.0/ref/settings/#default-auto-field
 
-CSRF_TRUSTED_ORIGINS = ['http://116.203.39.16:8000']
+CSRF_TRUSTED_ORIGINS = ["http://116.203.39.16:8000"]
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
