@@ -39,6 +39,20 @@
           {% endif %}
         {% endwith %}
 
+        <!-- Tags -->
+        <div class="mb-3">
+          <h3 class="mb-2">Product-Tags</h3>
+          {% if product.tags.all %}
+            <div class="d-flex flex-wrap gap-2">
+              {% for tag in product.tags.all %}
+                <span class="badge bg-secondary">{{ tag.name }}</span>
+              {% endfor %}
+            </div>
+          {% else %}
+            <span class="text-muted fst-italic">no tags available</span>
+          {% endif %}
+        </div>
+
         <div class="btn btn-primary btn-center mt-auto">Buy now</div>
       </div>
 
@@ -137,7 +151,7 @@
                          name="rating"
                          id="rating-{{ star }}"
                          value="{{ star }}"
-                         {% if form.rating.value|stringformat:"s" == star %}checked{% endif %}>
+                         {% if not request.GET.submitted and form.rating.value|stringformat:"s" == star %}checked{% endif %}>
                   <label for="rating-{{ star }}" title="{{ star }} star{% if star != '1' %}s{% endif %}">&#9733;</label>
                 {% endfor %}
               </div>
